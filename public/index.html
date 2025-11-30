@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TP1 Cloud – Node</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>TP1 – Configuration Système (Node.js)</h1>
+<button onclick="loadConfig()">Afficher ma configuration</button>
+
+<div id="result"></div>
+
+<script>
+async function loadConfig() {
+    const res = await fetch("/config");
+    const data = await res.json();
+
+    document.getElementById("result").innerHTML = `
+        <p><strong>CPU:</strong> ${data.cpu}</p>
+        <p><strong>RAM Totale:</strong> ${data.ram_total}</p>
+        <p><strong>RAM Libre:</strong> ${data.ram_free}</p>
+        <p><strong>OS:</strong> ${data.platform}</p>
+        <p><strong>Architecture:</strong> ${data.arch}</p>
+    `;
+}
+</script>
+
+</body>
+</html>
